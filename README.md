@@ -1,4 +1,8 @@
-# What is this repo?
+# Begin
+
+on 29/19/2023
+
+## What is this repo?
 
 That's a project where I will attempt to create a Minesweeper game that runs on terminal.
 
