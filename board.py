@@ -1,4 +1,7 @@
-import random 
+import random
+
+from domain.cell import Cell
+
 
 # step 1- Create a board and plant the bombs
 # step 2- Put the number of neighbor bombs on the non-bombs cells
@@ -13,15 +16,25 @@ class Board:
     def __init__(self, dim_size=10, num_bombs=10):
         self.dim_size = dim_size
         self.num_bombs = num_bombs
-        self.xadrez = [[None for _ in range(self.dim_size)] for _ in range(self.dim_size)] # matrix for objects
+        self.xadrez = [[Cell(x+1, y+1) for y in range(self.dim_size)] for x in range(self.dim_size)] # matrix for objects
 
+    def __str__(self):
+        print_xadrez = ''
+        for x in range(self.dim_size):
+            for y in range(self.dim_size):
+                print_xadrez += self.xadrez[x][y].__str__() + '\n'
+
+        return 'Board(dim_size={}, num_bombs={}, xadrez={})'.format(self.dim_size, self.num_bombs, print_xadrez)
 
     def draw_board(self):
+        drawing = ''
         sep = '\n' + '+----'*self.dim_size + '+\n'
         
-        for r in range(self.dim_size):
-            for c in range(self.dim_size):
-                return sep + (f'|  {self.xadrez[r][c]} '*self.dim_size + '|' + sep)*self.dim_size
+        for x in range(self.dim_size):
+            for y in range(self.dim_size):
+                drawing += sep + (f'|  {self.xadrez[max(x+1, 0)][min(y+1, self.dim_size)].draw()} '*self.dim_size + '|' + sep)*self.dim_size
+
+        return drawing
             
     def plant_bombs(self):
         bombs_planted = 0
@@ -37,20 +50,7 @@ class Board:
                 bombs_planted += 1
 
 
-
-# we are gonna create a class Cell, where we are gonna 
-# store all the info about each cell of the board
-class Cell:
-    def __init__(self, x, y, is_bomb, is_visible, neighbor_bombs):
-        self.x = x
-        self.y = y
-        self.is_bomb = is_bomb
-        self.is_visible = is_visible
-        self.neighbor_bombs = neighbor_bombs
-
-        
-
-j1 = Board()
-j1.plant_bombs()
+j1 = Board(5, 5)
+#j1.plant_bombs()
 print(j1.draw_board())
 
