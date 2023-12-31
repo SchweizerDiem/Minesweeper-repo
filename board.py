@@ -51,6 +51,6 @@ class Board:
 
 
 j1 = Board(5, 5)
-#j1.plant_bombs()
+j1.plant_bombs()
 print(j1.draw_board())
 
