@@ -43,10 +43,10 @@ class Board:
             row = loc // self.dim_size
             col = loc % self.dim_size
 
-            if self.xadrez[row][col] == 'X':
+            if self.xadrez[row][col].has_bomb == True:
                 pass
             else:
-                self.xadrez[row][col] = 'X'
+                self.xadrez[row][col].has_bomb = True
                 bombs_planted += 1
 
 
