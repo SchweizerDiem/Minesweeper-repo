@@ -31,10 +31,11 @@ class Board:
         sep = '\n' + '+----'*self.dim_size + '+\n'
         
         for x in range(self.dim_size):
+            drawing += sep
             for y in range(self.dim_size):
-                drawing += sep + (f'|  {self.xadrez[max(x+1, 0)][min(y+1, self.dim_size)].draw()} '*self.dim_size + '|' + sep)*self.dim_size
+                drawing += (f'| {self.xadrez[x][y].draw()} |')
 
-        return drawing
+        return drawing + '\n' + '+----'*self.dim_size + '+\n'
             
     def plant_bombs(self):
         bombs_planted = 0
@@ -53,4 +54,3 @@ class Board:
 j1 = Board(5, 5)
 j1.plant_bombs()
 print(j1.draw_board())
-
