@@ -42,10 +42,19 @@ class Board:
                 bombs_planted += 1
 
     def put_nb_neighbor_bombs(self):
-        # put function to place the number of bombs around.
-        pass
+        for y in range(self.dim_size):
+            for x in range(self.dim_size):
+                for r in range(max(0, self.xadrez[x][y].x-1), min(self.dim_size-1, self.xadrez[x][y].x+1)+1):
+                     for c in range(max(0, self.xadrez[x][y].y-1), min(self.dim_size-1, self.xadrez[x][y].y+1)+1):
+                        if r == self.xadrez[x][y].x and c == self.xadrez[x][y].y:
+                          continue 
+                        if self.xadrez[r][c].has_bomb == True:
+                             self.xadrez[x][y].nb_neighbor_bombs += 1
 
+        return self
 
 j1 = Board()
 j1.plant_bombs()
+j1.put_nb_neighbor_bombs()
 print(j1.draw_board())
+print(j1.__str__())
