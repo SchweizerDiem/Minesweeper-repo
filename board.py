@@ -21,9 +21,9 @@ class Board:
         drawing = '   A    B    C    D    E    F    G    H    I'
         sep = '\n' + '+----'*self.dim_size + '+\n'
 
-        for x in range(self.dim_size):
-            drawing += sep + str(x+1)
-            for y in range(self.dim_size):
+        for y in range(self.dim_size):
+            drawing += sep + str(y+1)
+            for x in range(self.dim_size):
                 drawing += (f'| {self.xadrez[x][y].draw()} |')
 
         return drawing + '\n' + '+----'*self.dim_size + '+\n'
@@ -40,6 +40,10 @@ class Board:
             else:
                 self.xadrez[row][col].has_bomb = True
                 bombs_planted += 1
+
+    def put_nb_neighbor_bombs(self):
+        # put function to place the number of bombs around.
+        pass
 
 
 j1 = Board()
