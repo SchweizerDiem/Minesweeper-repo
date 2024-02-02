@@ -7,24 +7,24 @@ class Board:
     def __init__(self, dim_size=9, num_bombs=10):
         self.dim_size = dim_size
         self.num_bombs = num_bombs
-        self.xadrez = [[Cell(x+1, y+1) for y in range(self.dim_size)] for x in range(self.dim_size)] # matrix for objects
+        self.xadrez = [[Cell(y, x) for y in range(self.dim_size)] for x in range(self.dim_size)] # matrix for objects
 
     def __str__(self):
         print_xadrez = ''
-        for x in range(self.dim_size):
-            for y in range(self.dim_size):
-                print_xadrez += self.xadrez[x][y].__str__() + '\n'
+        for y in range(self.dim_size):
+            for x in range(self.dim_size):
+                print_xadrez += self.xadrez[y][x].__str__() + '\n'
 
         return 'Board(dim_size={}, num_bombs={}, xadrez={})'.format(self.dim_size, self.num_bombs, print_xadrez)
 
     def draw_board(self):
-        drawing = '   A    B    C    D    E    F    G    H    I'
+        drawing = '   0    1    2    3    4    5    6    7    8'
         sep = '\n' + '+----'*self.dim_size + '+\n'
 
         for y in range(self.dim_size):
-            drawing += sep + str(y+1)
-            for x in range(self.dim_size):
-                drawing += (f'| {self.xadrez[x][y].draw()} |')
+            drawing += sep + str(y)
+            for x in range(self.dim_size): 
+                drawing += (f'| {self.xadrez[y][x].draw()} |')
 
         return drawing + '\n' + '+----'*self.dim_size + '+\n'
             
@@ -44,17 +44,20 @@ class Board:
     def put_nb_neighbor_bombs(self):
         for y in range(self.dim_size):
             for x in range(self.dim_size):
-                for r in range(max(0, self.xadrez[x][y].x-1), min(self.dim_size-1, self.xadrez[x][y].x+1)+1):
-                     for c in range(max(0, self.xadrez[x][y].y-1), min(self.dim_size-1, self.xadrez[x][y].y+1)+1):
-                        if r == self.xadrez[x][y].x and c == self.xadrez[x][y].y:
-                          continue 
-                        if self.xadrez[r][c].has_bomb == True:
-                             self.xadrez[x][y].nb_neighbor_bombs += 1
+                for r in range(max(0, self.xadrez[y][x].y-1), min(self.dim_size-1, self.xadrez[y][x].y+1)+1):
+                    for c in range(max(0, self.xadrez[y][x].y-1), min(self.dim_size-1, self.xadrez[y][x].x+1)+1):
+                        if (self.xadrez[y][x].has_bomb) or (r == self.xadrez[y][x].y and c == self.xadrez[y][x].x):
+                            continue
+                        if self.xadrez[r][c].has_bomb:
+                            self.xadrez[y][x].nb_neighbor_bombs += 1
 
-        return self
+def main():
+    j1 = Board()
+    j1.plant_bombs()
+    j1.put_nb_neighbor_bombs()
+    #print(j1.__str__())
+    print(j1.draw_board())
 
-j1 = Board()
-j1.plant_bombs()
-j1.put_nb_neighbor_bombs()
-print(j1.draw_board())
-print(j1.__str__())
+
+if __name__ == '__main__':
+    main()

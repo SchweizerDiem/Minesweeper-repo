@@ -19,7 +19,7 @@ class Cell:
         return self
 
     def __str__(self):
-        return 'Cell(x={}, y={}, has_bomb={}, is_visible={}, nb_neighbor_bombs={})'.format(self.x, self.y, self.has_bomb, self.is_visible, self.nb_neighbor_bombs)
+        return '\nCell(y={}, x={}, has_bomb={}, is_visible={}, nb_neighbor_bombs={})'.format(self.y, self.x, self.has_bomb, self.is_visible, self.nb_neighbor_bombs)
 
     def draw(self):
         if(self.has_bomb):
