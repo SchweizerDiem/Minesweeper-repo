@@ -45,7 +45,7 @@ class Board:
         for y in range(self.dim_size):
             for x in range(self.dim_size):
                 for r in range(max(0, self.xadrez[y][x].y-1), min(self.dim_size-1, self.xadrez[y][x].y+1)+1):
-                    for c in range(max(0, self.xadrez[y][x].y-1), min(self.dim_size-1, self.xadrez[y][x].x+1)+1):
+                    for c in range(max(0, self.xadrez[y][x].x-1), min(self.dim_size-1, self.xadrez[y][x].x+1)+1):
                         if (self.xadrez[y][x].has_bomb) or (r == self.xadrez[y][x].y and c == self.xadrez[y][x].x):
                             continue
                         if self.xadrez[r][c].has_bomb:
@@ -55,7 +55,7 @@ def main():
     j1 = Board()
     j1.plant_bombs()
     j1.put_nb_neighbor_bombs()
-    #print(j1.__str__())
+    print(j1.__str__())
     print(j1.draw_board())
 
 
