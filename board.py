@@ -51,13 +51,22 @@ class Board:
                         if self.xadrez[r][c].has_bomb:
                             self.xadrez[y][x].nb_neighbor_bombs += 1
 
+    def dig(self):
+        target = input("Target to dig [row,col]: ")
+        target = target.split(',')
+        return self.xadrez[int(target[0])][int(target[1])].is_visible == True 
+
 def main():
     j1 = Board()
     j1.plant_bombs()
     j1.put_nb_neighbor_bombs()
-    print(j1.__str__())
-    print(j1.draw_board())
+    #print(j1.__str__())
+
+    while True:
+        print(j1.draw_board())
+        j1.dig()
 
 
 if __name__ == '__main__':
     main()
+
