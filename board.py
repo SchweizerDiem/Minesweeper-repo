@@ -54,7 +54,9 @@ class Board:
     def dig(self):
         target = input("Target to dig [row,col]: ")
         target = target.split(',')
-        return self.xadrez[int(target[0])][int(target[1])].is_visible == True 
+        self.xadrez[int(target[0])][int(target[1])].is_visible = True
+        return self
+        #print(target)
 
 def main():
     j1 = Board()

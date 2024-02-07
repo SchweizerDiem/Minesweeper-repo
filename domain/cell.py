@@ -29,5 +29,5 @@ class Cell:
                 return ' '
             return self.nb_neighbor_bombs
         else:
-            return ' '
+            return '∎'
 
