@@ -92,6 +92,7 @@ def main():
         col = int(target[1])
         j1.dig(row, col)
     
+    print(j1.draw_board())
     print("Game Over! You lose!\n")
 
 
