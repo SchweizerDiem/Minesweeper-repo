@@ -8,6 +8,8 @@ class Board:
         self.dim_size = dim_size
         self.num_bombs = num_bombs
         self.xadrez = [[Cell(y, x) for y in range(self.dim_size)] for x in range(self.dim_size)] # matrix for objects
+        self.dug = set()
+        self.state = True
 
     def __str__(self):
         print_xadrez = ''
@@ -51,12 +53,29 @@ class Board:
                         if self.xadrez[r][c].has_bomb:
                             self.xadrez[y][x].nb_neighbor_bombs += 1
 
-    def dig(self):
-        target = input("Target to dig [row,col]: ")
-        target = target.split(',')
-        self.xadrez[int(target[0])][int(target[1])].is_visible = True
-        return self
+    def dig(self, row, col):
+
+        # Keep track of where we already dug.
+        self.dug.add((row, col))
+
+        if self.xadrez[row][col].has_bomb == True:
+            self.xadrez[row][col].is_visible = True
+            self.state = False
+            return self
+        elif self.xadrez[row][col].nb_neighbor_bombs > 0:
+            self.xadrez[row][col].is_visible = True
+            return self
+
+        self.xadrez[row][col].is_visible = True
+        for r in range(max(0, self.xadrez[row][col].y-1), min(self.dim_size-1, self.xadrez[row][col].y+1)+1):
+            for c in range(max(0, self.xadrez[row][col].x-1), min(self.dim_size-1, self.xadrez[row][col].x+1)+1):
+                if (r, c) in self.dug:
+                    continue
+                self.xadrez[r][c].is_visible = True
+                self.dig(r, c)
+    
         #print(target)
+
 
 def main():
     j1 = Board()
@@ -64,9 +83,16 @@ def main():
     j1.put_nb_neighbor_bombs()
     #print(j1.__str__())
 
-    while True:
+    while j1.state:
         print(j1.draw_board())
-        j1.dig()
+        target = input("Target to dig [row,col]: ")
+        print()
+        target = target.split(',')
+        row = int(target[0])
+        col = int(target[1])
+        j1.dig(row, col)
+    
+    print("Game Over! You lose!\n")
 
 
 if __name__ == '__main__':
