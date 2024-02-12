@@ -74,8 +74,6 @@ class Board:
                 self.xadrez[r][c].is_visible = True
                 self.dig(r, c)
     
-        #print(target)
-
 
 def main():
     j1 = Board()
@@ -83,7 +81,7 @@ def main():
     j1.put_nb_neighbor_bombs()
     #print(j1.__str__())
 
-    while j1.state:
+    while (len(j1.dug) < j1.dim_size**2 - j1.num_bombs) and (j1.state):
         print(j1.draw_board())
         target = input("Target to dig [row,col]: ")
         print()
