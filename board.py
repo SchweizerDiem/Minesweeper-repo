@@ -90,8 +90,12 @@ def main():
         col = int(target[1])
         j1.dig(row, col)
     
-    print(j1.draw_board())
-    print("Game Over! You lose!\n")
+    if j1.state:
+        print(j1.draw_board())
+        print("You win! Nice game!\n")
+    else:
+        print(j1.draw_board())
+        print("Game Over! You lose!\n")
 
 
 if __name__ == '__main__':
