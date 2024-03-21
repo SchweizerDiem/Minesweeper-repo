@@ -10,7 +10,7 @@ This Minesweeper game is an attempt to replicate the old
 This is not fully baked. If you think that some improvement 
 could made to the project, make an issue.
 
-## What is this repo?
+## What is this project?
 
 A fully functional minesweeper game that will run as an application
 with the purpose of replicating a minesweeper game. This project emerged as a
@@ -24,15 +24,15 @@ Python >= 3.10
 
 To play the game you need to clone this repo running this following command:
 
-```powershell
-git clone git clone https://github.com/SchweizerDiem/Minesweeper-repo.git
+```bash
+git clone https://github.com/SchweizerDiem/Minesweeper-repo.git
 ```
 
 ## Usage
 
 After installing you need to execute the `board.py` file, by running on the command line:
 
-```powershell
+```bash
 py.exe .\board.py
 ```
 
