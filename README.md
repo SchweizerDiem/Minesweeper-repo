@@ -36,7 +36,7 @@ After installing you need to execute the `board.py` file, by running on the comm
 py.exe .\board.py
 ```
 
-EVERYTHING IS SETUP!! Now you may play you game :)
+EVERYTHING IS SETUP!! Now you may play the game :)
 
 ## Problems
 
