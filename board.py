@@ -37,7 +37,7 @@ class Board:
             row = loc // self.dim_size
             col = loc % self.dim_size
 
-            if self.xadrez[row][col].has_bomb == True:
+            if self.xadrez[row][col].has_bomb:
                 pass
             else:
                 self.xadrez[row][col].has_bomb = True
